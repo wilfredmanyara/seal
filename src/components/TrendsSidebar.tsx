@@ -9,6 +9,7 @@ import { unstable_cache } from "next/cache";
 import { formatNumber } from "@/lib/utils";
 import FollowButton from "./FollowButton";
 import { getUserDataSelect } from "@/lib/types";
+import UserTooltip from "./UserTooltip";
 
 export default function TrendsSidebar() {
   const MicrosoftLoaderSVG = () => (
@@ -36,7 +37,7 @@ export default function TrendsSidebar() {
   );
 
   return (
-    <div className="sticky top-[5.25rem] hidden h-fit w-72 flex-none space-y-5 md:block lg:w-80">
+    <div className="sticky top-[5.25rem] hidden h-fit w-72 flex-none space-y-2 md:block lg:w-80">
       <Suspense
         fallback={
           <div className="flex items-center justify-center">
@@ -75,23 +76,25 @@ async function WhoToFollow() {
       <div className="text-xl font-bold">Who To Follow</div>
       {usersToFollow.map((user) => (
         <div key={user.id} className="flex items-center justify-between gap-3">
-          <Link
-            href={`/users/${user.username}`}
-            className="flex items-center gap-3"
-          >
-            <UserAvatar avatarUrl={user.avatarUrl} className="flex-none" />
-            <div className="">
-              <div className="flex items-center">
-                <p className="line-clamp-1 break-all font-semibold hover:underline">
-                  {user.displayName}
+          <UserTooltip user={user}>
+            <Link
+              href={`/users/${user.username}`}
+              className="flex items-center gap-3"
+            >
+              <UserAvatar avatarUrl={user.avatarUrl} className="flex-none" />
+              <div className="">
+                <div className="flex items-center">
+                  <p className="line-clamp-1 break-all font-semibold hover:underline">
+                    {user.displayName}
+                  </p>
+                  <Checkmark verified={user.verified} />
+                </div>
+                <p className="line-clamp-1 break-all text-muted-foreground">
+                  @{user.username}
                 </p>
-                <Checkmark verified={user.verified} />
               </div>
-              <p className="line-clamp-1 break-all text-muted-foreground">
-                @{user.username}
-              </p>
-            </div>
-          </Link>
+            </Link>
+          </UserTooltip>
           <FollowButton
             userId={user.id}
             initialState={{
@@ -133,7 +136,7 @@ async function TrendingTopics() {
 
   return (
     <div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm">
-      <div className="text-xl font-bold">TrendingTopics</div>
+      <div className="text-xl font-bold">Trending Topics</div>
       {trendingTopics.map(({ hashtag, count }) => {
         const title = hashtag.split("#")[1];
 

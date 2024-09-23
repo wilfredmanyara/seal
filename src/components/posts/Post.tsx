@@ -7,6 +7,8 @@ import { formatRelativeDate } from "@/lib/utils";
 import Checkmark from "../Checkmark";
 import { useSession } from "@/app/(main)/SessionProvider";
 import PostMoreButton from "./PostMoreButton";
+import Linkify from "../Linkify";
+import UserTooltip from "../UserTooltip";
 
 interface PostProps {
   post: PostData;
@@ -17,35 +19,42 @@ export default function Post({ post }: PostProps) {
   return (
     <article className="group/post space-y-5 rounded-2xl bg-card p-5 shadow-sm">
       <div className="flex justify-between gap-3">
-      <div className="flex flex-wrap gap-3">
-        <Link href={`/${post.user.username}`}>
-          <UserAvatar avatarUrl={post.user.avatarUrl} />
-        </Link>
-        <div className="">
-        <div className="flex items-center">
-            <Link
-            href={`/${post.user.username}`}
-            className="block hover:text-gray-500 font-bold">
-                {post.user.displayName}
+        <div className="flex flex-wrap gap-3">
+          <UserTooltip user={post.user}>
+            <Link href={`/${post.user.username}`}>
+              <UserAvatar avatarUrl={post.user.avatarUrl} />
             </Link>
-            <Checkmark verified={post.user.verified} />
+          </UserTooltip>
+          <div className="">
+            <div className="flex items-center">
+              <UserTooltip user={post.user}>
+                <Link
+                  href={`/${post.user.username}`}
+                  className="block font-bold hover:text-gray-500"
+                >
+                  {post.user.displayName}
+                </Link>
+              </UserTooltip>
+              <Checkmark verified={post.user.verified} />
             </div>
-            <Link 
-            href={`/posts/${post.id}`}
-            className="block text-sm text-muted-foreground hover:underline">
-                {formatRelativeDate(post.createdAt)}
+            <Link
+              href={`/posts/${post.id}`}
+              className="block text-sm text-muted-foreground hover:underline"
+            >
+              {formatRelativeDate(post.createdAt)}
             </Link>
+          </div>
         </div>
+        {post.user.id === user.id && (
+          <PostMoreButton
+            post={post}
+            className="opacity-0 transition-opacity group-hover/post:opacity-100"
+          />
+        )}
       </div>
-      {post.user.id === user.id && (
-        <PostMoreButton
-        post={post}
-        className="opacity-0 transition-opacity group-hover/post:opacity-100" />
-      )}
-      </div>
-      <div className="whitespace-pre-line break-words">
-        {post.content}
-      </div>
+      <Linkify>
+        <div className="whitespace-pre-line break-words">{post.content}</div>
+      </Linkify>
     </article>
   );
 }

@@ -14,6 +14,7 @@ import { notFound } from "next/navigation";
 import { cache } from "react";
 import UserPosts from "./UserPosts";
 import { CalendarDays } from "lucide-react";
+import Linkify from "@/components/Linkify";
 
 interface PageProps {
   params: { username: string };
@@ -63,8 +64,8 @@ export default async function Page({ params: { username } }: PageProps) {
   const user = await getUser(username, loggedinUser.id);
 
   return (
-    <main className="flex w-full min-w-0 gap-5">
-      <div className="w-full min-w-0 space-y-5">
+    <main className="flex w-full min-w-0 gap-2">
+      <div className="w-full min-w-0 space-y-2">
         <UserProfile user={user} loggedInUserId={loggedinUser.id} />
         <UserPosts userId={user.id} />
       </div>
@@ -87,7 +88,7 @@ async function UserProfile({user, loggedInUserId}: UserProfileProps) {
     }
 
     return (
-      <div className="h-fit w-full space-y-5 rounded-2xl bg-card p-5 shadow-sm">
+      <div className="h-fit w-full space-y-2 rounded-2xl bg-card p-5 shadow-sm">
         <UserAvatar
           avatarUrl={user.avatarUrl}
           size={250}
@@ -102,9 +103,11 @@ async function UserProfile({user, loggedInUserId}: UserProfileProps) {
                 {user.bio && (
                     <>
                         <hr />
+                        <Linkify>
                         <div className="whitespace-pre-line overflow-hidden break-words">
                             {user.bio}
                         </div>
+                        </Linkify>
                     </>
                 )}
                 <div className="flex items-center text-muted-foreground"><CalendarDays size={16} className="mr-1"/>Joined {formatDate(user.createdAt, "MMMM yyyy")}</div>

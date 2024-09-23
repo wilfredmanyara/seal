@@ -39,14 +39,14 @@
     --background: 20 14.3% 4.1%;
     --foreground: 0 0% 95%;
 
-    --card: 24 9.8% 10%;
+    --card: 0 0% 6.5%;
     --card-foreground: 0 0% 95%;
 
     --popover: 0 0% 9%;
     --popover-foreground: 0 0% 95%;
 
     --primary: 200 70% 45%;
-    --primary-foreground: 144.9 80.4% 10%;
+    --primary-foreground: 355.7 100% 97.3%;
 
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
@@ -72,8 +72,41 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(220, 220, 220, 0.5); /* Light gray track for visibility */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(100, 100, 100, 0.8); /* Darker gray for thumb */
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(50, 50, 50, 1); /* Even darker on hover */
+  }
+
+  /* Dark Theme Scrollbar */
+  .dark ::-webkit-scrollbar-track {
+    background: rgba(40, 40, 40, 0.7); /* Darker track for dark theme */
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgba(200, 200, 200, 0.9); /* Light thumb for dark theme */
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 1); /* White thumb on hover for contrast */
   }
 }
+
+
 
 .animate-spin {
   animation: spin 1s linear infinite;
@@ -84,6 +117,4 @@
   100% { transform: rotate(360deg); }
 }
 
-body {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-}
+
