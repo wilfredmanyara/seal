@@ -1,6 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { Bell, Bookmark, Home, HomeIcon, Mail } from "lucide-react";
+import { Bell, Home, HomeIcon, Mail } from "lucide-react";
 import Link from "next/link";
+import { HomeAltSlimHoriz } from 'iconoir-react';
+import { BellNotification } from 'iconoir-react';
+import { MessageAlert } from 'iconoir-react';
+import { Bookmark } from 'iconoir-react';
+
+
 
 interface MenuBarProps {
   className?: string;
@@ -16,7 +22,7 @@ export default function MenuBar({ className }: MenuBarProps) {
         asChild
       >
         <Link href="/">
-          <Home />
+          <HomeAltSlimHoriz height={25} width={25}/>
           <span className="hidden lg:inline text-lg">Home</span>
         </Link>
       </Button>
@@ -27,7 +33,7 @@ export default function MenuBar({ className }: MenuBarProps) {
         asChild
       >
         <Link href="/notifications">
-          <Bell />
+          <BellNotification height={25} width={25}/>
           <span className="hidden lg:inline text-lg">Notifications</span>
         </Link>
       </Button>
@@ -38,7 +44,7 @@ export default function MenuBar({ className }: MenuBarProps) {
         asChild
       >
         <Link href="/messages">
-          <Mail />
+          <MessageAlert height={25} width={25}/>
           <span className="hidden lg:inline text-lg">Messages</span>
         </Link>
       </Button>
@@ -49,7 +55,7 @@ export default function MenuBar({ className }: MenuBarProps) {
         asChild
       >
         <Link href="/bookmarks">
-          <Bookmark />
+          <Bookmark height={25} width={25}/>
           <span className="hidden lg:inline text-lg">Bookmarks</span>
         </Link>
       </Button>

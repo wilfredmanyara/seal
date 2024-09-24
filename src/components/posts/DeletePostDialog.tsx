@@ -45,6 +45,7 @@ export default function DeletePostDialog({
               variant="outline"
               onClick={onClose}
               disabled={mutation.isPending}
+              className="mb-3 md:mb-0"
             >
               Cancel
             </Button>
