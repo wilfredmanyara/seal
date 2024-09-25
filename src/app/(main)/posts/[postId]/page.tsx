@@ -84,6 +84,10 @@ export default async function Page({ params: { postId } }: PageProps) {
   return (
     <main className="flex w-full min-w-0 gap-2">
       <div className="w-full min-w-0 space-y-2">
+      <div className="rounded-2xl p-4 -mt-3 -mb-3">
+        <h1 className="text-center text-2xl font-bold">Post</h1>
+        <hr />
+      </div>
         <Post post={post} />
       </div>
       <div className="sticky top-[5.25rem] hidden h-fit w-80 flex-none lg:block">
