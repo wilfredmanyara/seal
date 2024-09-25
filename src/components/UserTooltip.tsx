@@ -14,6 +14,7 @@ import UserAvatar from "./UserAvatar";
 import FollowButton from "./FollowButton";
 import Linkify from "./Linkify";
 import FollowerCount from "./FollowerCount";
+import Checkmark from "./Checkmark";
 
 interface UserTooltipProps extends PropsWithChildren {
   user: UserData;
@@ -45,9 +46,10 @@ export default function UserTooltip({ children, user }: UserTooltipProps) {
             </div>
             <div>
               <Link href={`/${user.username}`}>
-                <div className="text-lg font-semibold hover:underline">
-                  {user.displayName}
-                </div>
+              <div className="flex items-center text-lg font-semibold hover:underline">
+                {user.displayName}
+                <Checkmark verified={user.verified} />
+              </div>
                 <div className="text-muted-foreground">@{user.username}</div>
               </Link>
             </div>
