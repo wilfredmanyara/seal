@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Bell, Home, HomeIcon, Mail } from "lucide-react";
 import Link from "next/link";
 import { HomeAltSlimHoriz } from 'iconoir-react';
 import { BellNotification } from 'iconoir-react';
