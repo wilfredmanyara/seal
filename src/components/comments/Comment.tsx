@@ -28,7 +28,7 @@ export default function Comment({comment}: CommentProps) {
               <div className="flex items-center">
                 <Link
                   href={`/${comment.user.username}`}
-                  className="font-medium hover:underline"
+                  className="font-bold hover:underline"
                 >
                   {comment.user.displayName}
                 </Link>
