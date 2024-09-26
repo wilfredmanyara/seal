@@ -105,16 +105,3 @@
     background: rgba(255, 255, 255, 1); /* White thumb on hover for contrast */
   }
 }
-
-
-
-.animate-spin {
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-
