@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "~stream-chat-react/dist/css/v2/index.css";
+
 @layer base {
   :root {
     --background: 224 5% 95%;
@@ -81,27 +83,67 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: rgba(220, 220, 220, 0.5); /* Light gray track for visibility */
+    background: rgba(220, 220, 220, 0.5); 
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(100, 100, 100, 0.8); /* Darker gray for thumb */
+    background: rgba(100, 100, 100, 0.8); 
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(50, 50, 50, 1); /* Even darker on hover */
+    background: rgba(50, 50, 50, 1); 
   }
 
-  /* Dark Theme Scrollbar */
   .dark ::-webkit-scrollbar-track {
-    background: rgba(40, 40, 40, 0.7); /* Darker track for dark theme */
+    background: rgba(40, 40, 40, 0.7); 
   }
 
   .dark ::-webkit-scrollbar-thumb {
-    background: rgba(200, 200, 200, 0.9); /* Light thumb for dark theme */
+    background: rgba(200, 200, 200, 0.9); 
   }
 
   .dark ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 1); /* White thumb on hover for contrast */
+    background: rgba(255, 255, 255, 1); 
   }
+}
+
+.str-chat {
+  --str-chat__font-family: inherit;
+  --str-chat__primary-color: theme(colors.primary.DEFAULT);
+  --str-chat__on-primary-color: theme(colors.primary.foreground);
+  --str-chat__active-primary-color: theme(colors.primary.foreground);
+  --str-chat__primary-color-low-emphasis: color-mix(
+    in hsl,
+    hsl(var(--primary)) 10%,
+    transparent
+  );
+  --str-chat__background-color: theme(colors.card.DEFAULT);
+  --str-chat__secondary-background-color: theme(colors.card.DEFAULT);
+  --str-chat__message-textarea-background-color: theme(colors.background);
+  --str-chat__channel-preview-active-background-color: theme(
+    colors.accent.DEFAULT
+  );
+  --str-chat__channel-preview-hover-background-color: var(
+    --str-chat__channel-preview-active-background-color
+  );
+  --str-chat__secondary-surface-color: theme(colors.muted.DEFAULT);
+  --str-chat__own-message-bubble-color: theme(colors.primary.foreground);
+  --str-chat__primary-surface-color: theme(colors.primary.DEFAULT);
+  --str-chat__primary-surface-color-low-emphasis: var(
+    --str-chat__primary-color-low-emphasis
+  );
+  --str-chat__disabled-color: theme(colors.muted.DEFAULT);
+  --str-chat__cta-button-border-radius: var(--radius);
+}
+
+.str-chat-channel-list {
+  border-right: none;
+}
+
+.str-chat__channel-list-react .str-chat__channel-list-messenger-react {
+  padding-bottom: 0;
+}
+
+.str-chat__channel-search-bar-button--exit-search {
+  display: none;
 }

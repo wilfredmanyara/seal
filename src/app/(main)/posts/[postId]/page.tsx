@@ -7,6 +7,7 @@ import UserTooltip from "@/components/UserTooltip";
 import Post from "@/components/posts/Post";
 import prisma from "@/lib/prisma";
 import { UserData, getPostDataInclude } from "@/lib/types";
+import { CircleSpark } from "iconoir-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense, cache } from "react";
@@ -53,34 +54,6 @@ export default async function Page({ params: { postId } }: PageProps) {
 
   const post = await getPost(postId, user.id);
 
-  const MicrosoftLoaderSVG = () => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="30"
-      height="30"
-      viewBox="0 0 300 150"
-    >
-      <path
-        fill="none"
-        stroke="#228ec3"
-        strokeWidth="6"
-        strokeLinecap="round"
-        strokeDasharray="300"
-        strokeDashoffset="0"
-        d="M275 75c0 31-27 50-50 50-58 0-92-100-150-100-28 0-50 22-50 50s23 50 50 50c58 0 92-100 150-100 24 0 50 19 50 50Z"
-      >
-        <animate
-          attributeName="stroke-dashoffset"
-          calcMode="spline"
-          dur="2"
-          values="0; 300; 0"
-          keySplines="0 0 1 1; 0 0 1 1"
-          repeatCount="indefinite"
-        />
-      </path>
-    </svg>
-  );
-
   return (
     <main className="flex w-full min-w-0 gap-2">
       <div className="w-full min-w-0 space-y-2">
@@ -91,7 +64,7 @@ export default async function Page({ params: { postId } }: PageProps) {
         <Post post={post} />
       </div>
       <div className="sticky top-[5.25rem] hidden h-fit w-80 flex-none lg:block">
-        <Suspense fallback={<MicrosoftLoaderSVG />}>
+        <Suspense fallback={<CircleSpark className="mx-auto animate-spin" />}>
           <UserInfoSidebar user={post.user} />
         </Suspense>
       </div>
