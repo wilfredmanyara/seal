@@ -13,11 +13,30 @@ const Checkmark: React.FC<StarIconProps> = ({ verified = false, ...props }) => {
   const [strokeColor, setStrokeColor] = useState<string>("#FFFFFF");
 
   useEffect(() => {
-    if (theme === "dark") {
-      setStrokeColor("#1c1816");
-    } else {
-      setStrokeColor("#FFFFFF");
-    }
+    const updateStrokeColor = () => {
+      if (theme === "dark") {
+        setStrokeColor("#1c1816");
+      } else if (theme === "system") {
+        const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        setStrokeColor(isDarkMode ? "#1c1816" : "#FFFFFF");
+      } else {
+        setStrokeColor("#FFFFFF");
+      }
+    };
+
+    updateStrokeColor(); // Initial check
+
+    // Optionally listen for changes in the system theme
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleMediaChange = (event: MediaQueryListEvent) => {
+      setStrokeColor(event.matches ? "#1c1816" : "#FFFFFF");
+    };
+
+    mediaQuery.addEventListener("change", handleMediaChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaChange);
+    };
   }, [theme]);
 
   if (!verified) {
