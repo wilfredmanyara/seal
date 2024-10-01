@@ -1,3 +1,5 @@
+"use client"
+
 import {
   Dialog,
   DialogContent,
@@ -31,6 +33,7 @@ import avatarPlaceholder from "@/assets/avatar-placeholder.png";
 import { Camera } from "lucide-react";
 import CropImageDialog from "@/components/CropImageDialog";
 import Resizer from "react-image-file-resizer";
+import { useRouter } from 'next/navigation';
 
 interface EditProfileDialogProps {
   user: UserData;
@@ -47,9 +50,12 @@ export default function EditProfileDialog({
     resolver: zodResolver(updateUserProfileSchema),
     defaultValues: {
       displayName: user.displayName,
+      username: user.username,
       bio: user.bio || "",
     },
   });
+
+  const router = useRouter()
 
   const mutation = useUpdateProfileMutation();
 
@@ -69,6 +75,10 @@ export default function EditProfileDialog({
         onSuccess: () => {
           setCroppedAvatar(null);
           onOpenChange(false);
+
+          if (values.username !== user.username) {
+            router.push(`/${values.username}`);
+          }
         },
       },
     );
@@ -101,6 +111,19 @@ export default function EditProfileDialog({
                   <FormLabel>Display Name</FormLabel>
                   <FormControl>
                     <Input placeholder="Your display name" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Your username" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

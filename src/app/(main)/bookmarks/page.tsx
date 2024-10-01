@@ -3,7 +3,7 @@ import Bookmarks from "./Bookmarks";
 import TrendsSidebar from "@/components/TrendsSidebar";
 
 export const metadata: Metadata = {
-    title: "bookmarks"
+    title: "Bookmarks"
 }
 
 export default function Page() {
