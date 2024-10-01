@@ -10,7 +10,7 @@ export default function Navbar() {
             Seal
           </Link>
           <SearchField />
-          <UserButton className="user-button md:ms-auto sm:block" />
+          <UserButton className="sm:ms-auto" />
         </div>
       </header>
     );
