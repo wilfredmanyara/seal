@@ -77,8 +77,10 @@ export default function EditProfileDialog({
           onOpenChange(false)
 
           if (values.username !== user.username) {
-            router.push(`/${values.username}?reload=true`);
-          }
+            router.push(`/${values.username}`).then(() => {
+              window.location.href = `/${values.username}`;
+            });
+          }          
         },
       },
     );
