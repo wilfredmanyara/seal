@@ -74,13 +74,10 @@ export default function EditProfileDialog({
       {
         onSuccess: () => {
           setCroppedAvatar(null);
-          onOpenChange(false);
+          onOpenChange(false)
 
           if (values.username !== user.username) {
             router.push(`/${values.username}`);
-            setTimeout(() => {
-              window.location.reload();
-          }, 0);
           }
         },
       },
