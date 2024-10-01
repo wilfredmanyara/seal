@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import {
   Dialog,
@@ -33,7 +33,7 @@ import avatarPlaceholder from "@/assets/avatar-placeholder.png";
 import { Camera } from "lucide-react";
 import CropImageDialog from "@/components/CropImageDialog";
 import Resizer from "react-image-file-resizer";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
 interface EditProfileDialogProps {
   user: UserData;
@@ -55,7 +55,7 @@ export default function EditProfileDialog({
     },
   });
 
-  const router = useRouter();
+  const router = useRouter()
 
   const mutation = useUpdateProfileMutation();
 
@@ -77,8 +77,7 @@ export default function EditProfileDialog({
           onOpenChange(false);
 
           if (values.username !== user.username) {
-            router.replace(`/${values.username}`);
-            window.location.reload();
+            router.push(`/${values.username}`);
           }
         },
       },
