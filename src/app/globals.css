@@ -147,3 +147,9 @@
 .str-chat__channel-search-bar-button--exit-search {
   display: none;
 }
+
+@media (max-width: 394px) {
+  .user-button {
+    display: none;
+  }
+}
