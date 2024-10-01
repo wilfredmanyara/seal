@@ -77,9 +77,8 @@ export default function EditProfileDialog({
           onOpenChange(false)
 
           if (values.username !== user.username) {
-            router.push(`/${values.username}`).then(() => {
+            router.push(`/${values.username}`)
               window.location.href = `/${values.username}`;
-            });
           }          
         },
       },
