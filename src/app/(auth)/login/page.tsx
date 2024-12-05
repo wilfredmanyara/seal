@@ -22,8 +22,7 @@ export default function Page() {
         <div className="space-y-1 text-center">
           <h1 className="text-center text-3xl font-bold">Login to{" "}<span className="text-primary">Seal</span></h1>
           <p className="text-muted-foreground">
-            A place where even <span className="italic">you</span> can find a
-            friend.
+            A social platform.
           </p>
           </div>
           <div className="space-y-5">
